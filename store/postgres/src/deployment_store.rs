@@ -164,7 +164,7 @@ impl DeploymentStore {
             if replace || !exists {
                 deployment::create_deployment(
                     &conn,
-                    &site.deployment,
+                    &site,
                     deployment,
                     exists,
                     replace,
@@ -809,7 +809,7 @@ impl DeploymentStore {
             )?;
             deployment::update_entity_count(
                 &conn,
-                &site.deployment,
+                site.as_ref(),
                 layout.count_query.as_str(),
                 count,
             )?;
@@ -888,7 +888,7 @@ impl DeploymentStore {
 
             deployment::update_entity_count(
                 &conn,
-                &site.deployment,
+                site.as_ref(),
                 layout.count_query.as_str(),
                 count,
             )?;
